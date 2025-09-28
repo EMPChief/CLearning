@@ -38,10 +38,10 @@ clean:
 list:
 	@echo "Projects:" $(SUBDIRS)
 
-# Create a new project from the boilerplate in project_two
+# Create a new project from the boilerplate directory
 # Usage: make new NAME=project_3
 new:
 	@test -n "$(NAME)" || { echo "usage: make new NAME=project_3"; exit 1; }
-	@cp -R project_two "$(NAME)"
+	@cp -R boilerplate "$(NAME)"
 	@$(MAKE) -C "$(NAME)" clean >/dev/null
 	@echo "Created $(NAME). You can build with: make -C $(NAME)"
