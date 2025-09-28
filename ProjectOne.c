@@ -1,60 +1,72 @@
 #include <stdio.h>
+#define PI 3.141592653589793
 // Function declarations
 void calculate_two_grade_average(void);
 void calculate_birth_year(void);
 void calculate_rectangle_area(void);
-void calculate_rectangle_and_circle_area(void);
+void calculate_rectangle_circle_area(void);
 void calculate_rectangle_perimeter(void);
 void calculate_three_grade_average(void);
-void temprature_converter(void);
+void temperature_converter(void);
 void swap_two_floating_numbers(void);
 
 int main(void) {
   int user_choice;
+  int valid_choice = 0;
 
-  // Show user a menu of available calculations
-  printf("=== Calculation Menu ===\n");
-  printf("1 - Average of two grades (learning about scanf)\n");
-  printf("2 - Birth year calculator (learn a bit more about scanf)\n");
-  printf("3 - Rectangle area (learning about rectangle)\n");
-  printf("4 - Rectangle and circle area\n");
-  printf("5 - Rectangle perimeter (learning about double)\n");
-  printf("6 - Average of three grades (learning about casting)\n");
-  printf("7 - Convert Celsius Degree to Fahrenheit Degrees\n");
-  printf("8 - Swaping 2 floating numbers\n");
-  printf("========================\n");
-  printf("Enter your choice (1-6): ");
-  scanf("%d", &user_choice);
+  do {
+    // Show user a menu of available calculations
+    printf("=== Calculation Menu ===\n");
+    printf("1 - Average of two grades (learning about scanf)\n");
+    printf("2 - Birth year calculator (learn a bit more about scanf)\n");
+    printf("3 - Rectangle area (learning about rectangle)\n");
+    printf("4 - Rectangle and circle area\n");
+    printf("5 - Rectangle perimeter (learning about double)\n");
+    printf("6 - Average of iithree grades (learning about casting)\n");
+    printf("7 - Convert Celsius Degree to Fahrenheit Degrees\n");
+    printf("8 - Swaping 2 floating numbers\n");
+    printf("========================\n");
+    printf("Enter your choice (1-8): ");
+    scanf("%d", &user_choice);
 
-  // Decide which calculation to run based on user choice
-  switch (user_choice) {
-  case 1:
-    calculate_two_grade_average();
-    break;
-  case 2:
-    calculate_birth_year();
-    break;
-  case 3:
-    calculate_rectangle_area();
-    break;
-  case 4:
-    calculate_rectangle_and_circle_area();
-    break;
-  case 5:
-    calculate_rectangle_perimeter();
-    break;
-  case 6:
-    calculate_three_grade_average();
-    break;
-  case 7:
-    temprature_converter();
-    break;
-  case 8:
-    swap_two_floating_numbers();
-    break;
-  default:
-    printf("Invalid choice! Please run the program again and choose 1-6.\n");
-  }
+    // Decide which calculation to run based on user choice
+    switch (user_choice) {
+    case 1:
+      calculate_two_grade_average();
+      valid_choice = 1;
+      break;
+    case 2:
+      calculate_birth_year();
+      valid_choice = 1;
+      break;
+    case 3:
+      calculate_rectangle_area();
+      valid_choice = 1;
+      break;
+    case 4:
+      calculate_rectangle_circle_area();
+      valid_choice = 1;
+      break;
+    case 5:
+      calculate_rectangle_perimeter();
+      valid_choice = 1;
+      break;
+    case 6:
+      calculate_three_grade_average();
+      valid_choice = 1;
+      break;
+    case 7:
+      temperature_converter();
+      valid_choice = 1;
+      break;
+    case 8:
+      swap_two_floating_numbers();
+      valid_choice = 1;
+      break;
+    default:
+      printf("Invalid choice! Please choose 1-8.\n");
+    }
+  } while (!valid_choice);
 
   return 0;
 }
@@ -102,7 +114,7 @@ void calculate_rectangle_area(void) {
   printf("The area of the rectangle is: %d\n", area);
 }
 
-void calculate_rectangle_and_circle_area(void) {
+void calculate_rectangle_circle_area(void) {
   // Calculate areas of both a rectangle and a circle
   float rectangle_length, rectangle_width, rectangle_area;
   float circle_radius, circle_area;
@@ -115,7 +127,7 @@ void calculate_rectangle_and_circle_area(void) {
   scanf("%f", &circle_radius);
 
   rectangle_area = rectangle_length * rectangle_width;
-  circle_area = 3.14159f * circle_radius * circle_radius;
+  circle_area = PI * circle_radius * circle_radius;
 
   printf("Rectangle area: %.2f\n", rectangle_area);
   printf("Circle area: %.2f\n", circle_area);
@@ -147,31 +159,33 @@ void calculate_three_grade_average(void) {
   printf("The average grade is: %.2f\n", average);
 }
 
-void temprature_converter(void) {
-  double celcius, fahrenheit, user_choice, result;
+void temperature_converter(void) {
+  double celsius, fahrenheit, user_choice, result;
   printf("Enter 1 to convert Celcius to Fahrenheit or 2 to convert Fahrenheit "
          "to Celcius: ");
   scanf("%lf", &user_choice);
 
   if (user_choice == 1) {
-    printf("Enter temperature in Celcius: ");
-    scanf("%lf", &celcius);
-    result = (celcius * 9.0 / 5.0) + 32.0;
-    printf("%.2lf Celcius is %.2lf Fahrenheit\n", celcius, result);
+    printf("Enter temperature in Celsius: ");
+    scanf("%lf", &celsius);
+    result = (celsius * 9.0 / 5.0) + 32.0;
+    printf("%.2lf Celsius is %.2lf Fahrenheit\n", celsius, result);
   } else if (user_choice == 2) {
     printf("Enter temperature in Fahrenheit: ");
     scanf("%lf", &fahrenheit);
     result = (fahrenheit - 32.0) * 5.0 / 9.0;
-    printf("%.2lf Fahrenheit is %.2lf Celcius\n", fahrenheit, result);
+    printf("%.2lf Fahrenheit is %.2lf Celsius\n", fahrenheit, result);
   } else {
     printf("Invalid choice! Please run the program again and choose 1 or 2.\n");
   }
 }
 
 void swap_two_floating_numbers(void) {
-  float a = 5.372;
-  float b = 3.214;
-  float temp;
+  float a, b, temp;
+  printf("Enter first number: ");
+  scanf("%f", &a);
+  printf("Enter second number: ");
+  scanf("%f", &b);
   printf("a before swap: %f\n", a);
   printf("b before swap: %f\n", b);
   temp = a;
