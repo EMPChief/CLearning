@@ -1,13 +1,13 @@
-# Simple Makefile for ProjectOne
+# Makefile for project_two
 
 CC := gcc
 CFLAGS := -std=c11 -Wall -Wextra -O2
 LDFLAGS :=
 
-TARGET := ProjectOne
-SRC := main.c calculations.c
+TARGET := $(notdir $(CURDIR))
+SRC := main.c function_file.c
 OBJ := $(SRC:.c=.o)
-DEPS := calculations.h
+DEPS := helper.h
 
 .PHONY: all clean run debug
 
@@ -20,10 +20,10 @@ $(TARGET): $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 run: $(TARGET)
-	./$(TARGET)
+	@if [ -n "$$INPUT" ]; then printf "%s" "$$INPUT" | ./$(TARGET); else ./$(TARGET); fi
 
 clean:
-	$(RM) $(OBJ) $(TARGET)
+	$(RM) $(OBJ) $(TARGET) *.o ProjectOne
 
 # Build with debug symbols
 debug: CFLAGS := -std=c11 -Wall -Wextra -g
