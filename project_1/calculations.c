@@ -167,7 +167,7 @@ void swap_two_floating_numbers(void) {
 
   // Display original values
   printf("First number before swap: %f\n", first_number);
-  printf("Second number before swap: f\n", second_number);
+  printf("Second number before swap: %f\n", second_number);
 
   // Perform the swap using three-step process
   temporary_variable = first_number;  // Step 1: Save first number
@@ -193,8 +193,9 @@ void math_operation_learn(void) {
   term_position = 9;     // Which term we want to calculate
 
   // Get sequence parameters from user
-  printf("Enter the term position, first term, and common difference separated "
-         "by spaces: ");
+  // printf("Enter the term position, first term, and common difference
+  // separated "
+  //       "by spaces: ");
   // scanf("%lf", &term_position);     // Which term to find
   // scanf("%d", &first_term);         // Starting term
   // scanf("%lf", &common_difference); // Difference between terms
