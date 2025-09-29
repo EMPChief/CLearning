@@ -7,20 +7,26 @@ LDFLAGS :=
 TARGET := main
 SRC := main.c calculations.c
 
-.PHONY: all clean run debug
+.PHONY: all clean run debug test
 
 all: $(TARGET)
 
 $(TARGET): $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $@ $(LDFLAGS)
+\t$(CC) $(CFLAGS) $(SRC) -o $@ $(LDFLAGS)
 
 run: $(TARGET)
-	@if [ -n "$$INPUT" ]; then printf "%s" "$$INPUT" | ./$(TARGET); else ./$(TARGET); fi
+\t@if [ -n "$$INPUT" ]; then printf "%s" "$$INPUT" | ./$(TARGET); else ./$(TARGET); fi
 
 clean:
-	$(RM) $(TARGET) ProjectOne project_one *.o
+\t$(RM) $(TARGET) ProjectOne project_one *.o tests/test_calculations_unit
 
 # Build with debug symbols (still single-binary)
 debug:
-	$(MAKE) clean
-	$(MAKE) CFLAGS="-std=c11 -Wall -Wextra -g" all
+\t$(MAKE) clean
+\t$(MAKE) CFLAGS="-std=c11 -Wall -Wextra -g" all
+
+test: tests/test_calculations_unit
+\t./tests/test_calculations_unit
+
+tests/test_calculations_unit: tests/test_calculations_unit.c tests/test_io_capture.h tests/test_asserts.h test_calculations.c
+\t$(CC) $(CFLAGS) -o $@ tests/test_calculations_unit.c
