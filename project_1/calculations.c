@@ -196,21 +196,45 @@ void swap_two_floating_numbers(void) {
 
 void math_operation_learn(void) {
   /**
-   * Compute and display the nth term of an arithmetic sequence.
+   * Demonstrates how to compute the nth term of an arithmetic sequence.
    *
-   * Uses the formula:
-   *   nth_term = first_term + (term_position - 1) * common_difference
+   * An arithmetic sequence is a sequence of numbers where each term
+   * after the first is obtained by adding a fixed value (the common
+   * difference) to the previous term.
    *
-   * Displays the sequence parameters, the applied formula, and the result.
+   * Formula:
+   *     nth_term = first_term + (term_position - 1) * common_difference
+   *
+   * Where:
+   *     - first_term: the first number in the sequence (a₁)
+   *     - common_difference: the fixed difference added each step (d)
+   *     - term_position: the position of the term you want to calculate (n)
+   *     - nth_term: the resulting value at position n
+   *
+   * Example:
+   *     If first_term = 1, common_difference = 2, and term_position = 9,
+   *     the 9th term is:
+   *         nth_term = 1 + (9 - 1) * 2 = 17
+   *
+   * Notes:
+   * - This function comes with default values so it can run without input.
+   * - Uncomment the scanf lines to allow interactive input from the user.
    */
+
   double common_difference;
   int first_term;
   double term_position;
   double nth_term;
 
+  // Default example values
   common_difference = 2;
   first_term = 1;
   term_position = 9;
+
+  // Uncomment to enable interactive input
+  // printf("Enter the term position, first term, and common difference
+  // separated by spaces: "); scanf("%lf", &term_position); scanf("%d",
+  // &first_term); scanf("%lf", &common_difference);
 
   nth_term = first_term + (term_position - 1) * common_difference;
 
