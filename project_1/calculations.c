@@ -153,7 +153,11 @@ void temperature_converter(void) {
   }
 }
 
-// Function to demonstrate variable swapping using a temporary variable
+/**
+ * Read two floating-point numbers from standard input, swap their values, and print the values before and after swapping.
+ *
+ * Prompts the user to enter two floats, exchanges their values using a temporary variable to demonstrate swapping, and displays the original and swapped values.
+ */
 void swap_two_floating_numbers(void) {
   float first_number;       // First number to swap
   float second_number;      // Second number to swap
@@ -180,7 +184,12 @@ void swap_two_floating_numbers(void) {
 }
 
 // Function to calculate nth term of an arithmetic sequence (demonstrates math
-// operations)
+/**
+ * Compute and display the nth term of an arithmetic sequence with a step-by-step explanation.
+ *
+ * Calculates the nth term using the formula nth_term = first_term + (term_position - 1) * common_difference,
+ * then prints the sequence parameters, the applied formula, the intermediate substitution, and the resulting value.
+ */
 void math_operation_learn(void) {
   double common_difference; // Difference between consecutive terms
   int first_term;           // Starting value of the sequence
