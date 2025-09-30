@@ -14,6 +14,7 @@ int main(void) {
     printf("2 - Birth year calculator (learn a bit more about scanf)\n");
     printf("3 - Rectangle area (learning about rectangle)\n");
     printf("4 - Rectangle and circle area\n");
+<<<<<<< Updated upstream
     printf("5 - Rectangle perimeter (learning about double)\n");
     printf("6 - Average of iithree grades (learning about casting)\n");
     printf("7 - Convert Celsius Degree to Fahrenheit Degrees\n");
@@ -21,6 +22,18 @@ int main(void) {
     printf("========================\n");
     printf("Enter your choice (1-8): ");
     scanf("%d", &user_choice);  // Read user's menu choice
+=======
+    printf("5 - Rectangle perimeter\n");
+    printf("6 - Average of three grades\n");
+    printf("7 - Temperature converter\n");
+    printf("8 - Swap two floating numbers\n");
+    printf("9 - Math operation learn\n");
+    printf("========================\n");
+
+    if (!read_int("Enter your choice (1-9): ", &user_choice)) {
+      continue;
+    }
+>>>>>>> Stashed changes
 
     // Execute the selected function based on user choice
     switch (user_choice) {
