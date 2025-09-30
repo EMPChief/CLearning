@@ -24,8 +24,9 @@ int main(void) {
     printf("6 - Average of three grades\n");
     printf("7 - Temperature converter\n");
     printf("8 - Swap two floating numbers\n");
+    printf("9 - Math operation learn\n");
     printf("========================\n");
-    
+
     if (!read_int("Enter your choice (1-8): ", &user_choice)) {
       continue;
     }
