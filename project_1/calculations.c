@@ -4,6 +4,54 @@
 
 #define PI 3.141592653589793
 
+static int read_int(const char *prompt, int *value) {
+  int c;
+  printf("%s", prompt);
+  if (scanf("%d", value) != 1) {
+    while ((c = getchar()) != '\n' && c != EOF);
+    printf("Invalid input. Please enter a valid integer.\n");
+    return 0;
+  }
+  while ((c = getchar()) != '\n' && c != EOF);
+  return 1;
+}
+
+static int read_float(const char *prompt, float *value) {
+  int c;
+  printf("%s", prompt);
+  if (scanf("%f", value) != 1) {
+    while ((c = getchar()) != '\n' && c != EOF);
+    printf("Invalid input. Please enter a valid number.\n");
+    return 0;
+  }
+  while ((c = getchar()) != '\n' && c != EOF);
+  return 1;
+}
+
+static int read_double(const char *prompt, double *value) {
+  int c;
+  printf("%s", prompt);
+  if (scanf("%lf", value) != 1) {
+    while ((c = getchar()) != '\n' && c != EOF);
+    printf("Invalid input. Please enter a valid number.\n");
+    return 0;
+  }
+  while ((c = getchar()) != '\n' && c != EOF);
+  return 1;
+}
+
+static int read_three_ints(const char *prompt, int *val1, int *val2, int *val3) {
+  int c;
+  printf("%s", prompt);
+  if (scanf("%d %d %d", val1, val2, val3) != 3) {
+    while ((c = getchar()) != '\n' && c != EOF);
+    printf("Invalid input. Please enter three valid integers separated by spaces.\n");
+    return 0;
+  }
+  while ((c = getchar()) != '\n' && c != EOF);
+  return 1;
+}
+
 void calculate_two_grade_average(void) {
   /**
    * Read two grades from input, calculate their average, and print the result.
@@ -15,10 +63,12 @@ void calculate_two_grade_average(void) {
   int grade_two;
   double grade_average;
 
-  printf("Input first grade: ");
-  scanf("%d", &grade_one);
-  printf("Input second grade: ");
-  scanf("%d", &grade_two);
+  if (!read_int("Input first grade: ", &grade_one)) {
+    return;
+  }
+  if (!read_int("Input second grade: ", &grade_two)) {
+    return;
+  }
 
   grade_average = (grade_one + grade_two) / 2.0;
   printf("The average grade is: %.2f\n", grade_average);
@@ -35,10 +85,12 @@ void calculate_birth_year(void) {
   int current_age;
   int birth_year;
 
-  printf("Input current year: ");
-  scanf("%d", &current_year);
-  printf("Input your age: ");
-  scanf("%d", &current_age);
+  if (!read_int("Input current year: ", &current_year)) {
+    return;
+  }
+  if (!read_int("Input your age: ", &current_age)) {
+    return;
+  }
 
   birth_year = current_year - current_age;
   printf("You were born in: %d\n", birth_year);
@@ -55,10 +107,12 @@ void calculate_rectangle_area(void) {
   int rectangle_height;
   int rectangle_area;
 
-  printf("Input rectangle length: ");
-  scanf("%d", &rectangle_length);
-  printf("Input rectangle height: ");
-  scanf("%d", &rectangle_height);
+  if (!read_int("Input rectangle length: ", &rectangle_length)) {
+    return;
+  }
+  if (!read_int("Input rectangle height: ", &rectangle_height)) {
+    return;
+  }
 
   rectangle_area = rectangle_length * rectangle_height;
   printf("The area of the rectangle is: %d\n", rectangle_area);
@@ -78,12 +132,15 @@ void calculate_rectangle_circle_area(void) {
   float circle_radius;
   float circle_area;
 
-  printf("Input rectangle length: ");
-  scanf("%f", &rectangle_length);
-  printf("Input rectangle width: ");
-  scanf("%f", &rectangle_width);
-  printf("Input circle radius: ");
-  scanf("%f", &circle_radius);
+  if (!read_float("Input rectangle length: ", &rectangle_length)) {
+    return;
+  }
+  if (!read_float("Input rectangle width: ", &rectangle_width)) {
+    return;
+  }
+  if (!read_float("Input circle radius: ", &circle_radius)) {
+    return;
+  }
 
   rectangle_area = rectangle_length * rectangle_width;
   circle_area = PI * circle_radius * circle_radius;
@@ -103,10 +160,12 @@ void calculate_rectangle_perimeter(void) {
   double rectangle_width;
   double rectangle_perimeter;
 
-  printf("Input rectangle length: ");
-  scanf("%lf", &rectangle_length);
-  printf("Input rectangle width: ");
-  scanf("%lf", &rectangle_width);
+  if (!read_double("Input rectangle length: ", &rectangle_length)) {
+    return;
+  }
+  if (!read_double("Input rectangle width: ", &rectangle_width)) {
+    return;
+  }
 
   rectangle_perimeter = 2 * (rectangle_length + rectangle_width);
   printf("Rectangle perimeter: %.2lf\n", rectangle_perimeter);
@@ -124,8 +183,9 @@ void calculate_three_grade_average(void) {
   int grade_three;
   double grade_average;
 
-  printf("Input three grades separated by spaces: ");
-  scanf("%d %d %d", &grade_one, &grade_two, &grade_three);
+  if (!read_three_ints("Input three grades separated by spaces: ", &grade_one, &grade_two, &grade_three)) {
+    return;
+  }
 
   grade_average = (grade_one + grade_two + grade_three) / 3.0;
   printf("The average grade is: %.2f\n", grade_average);
@@ -146,19 +206,21 @@ void temperature_converter(void) {
   double user_choice;
   double conversion_result;
 
-  printf("Enter 1 to convert Celsius to Fahrenheit or 2 to convert Fahrenheit "
-         "to Celsius: ");
-  scanf("%lf", &user_choice);
+  if (!read_double("Enter 1 to convert Celsius to Fahrenheit or 2 to convert Fahrenheit to Celsius: ", &user_choice)) {
+    return;
+  }
 
   if (user_choice == 1) {
-    printf("Enter temperature in Celsius: ");
-    scanf("%lf", &celsius_temperature);
+    if (!read_double("Enter temperature in Celsius: ", &celsius_temperature)) {
+      return;
+    }
     conversion_result = (celsius_temperature * 9.0 / 5.0) + 32.0;
     printf("%.2lf Celsius is %.2lf Fahrenheit\n", celsius_temperature,
            conversion_result);
   } else if (user_choice == 2) {
-    printf("Enter temperature in Fahrenheit: ");
-    scanf("%lf", &fahrenheit_temperature);
+    if (!read_double("Enter temperature in Fahrenheit: ", &fahrenheit_temperature)) {
+      return;
+    }
     conversion_result = (fahrenheit_temperature - 32.0) * 5.0 / 9.0;
     printf("%.2lf Fahrenheit is %.2lf Celsius\n", fahrenheit_temperature,
            conversion_result);
@@ -178,10 +240,12 @@ void swap_two_floating_numbers(void) {
   float second_number;
   float temporary_variable;
 
-  printf("Enter first number: ");
-  scanf("%f", &first_number);
-  printf("Enter second number: ");
-  scanf("%f", &second_number);
+  if (!read_float("Enter first number: ", &first_number)) {
+    return;
+  }
+  if (!read_float("Enter second number: ", &second_number)) {
+    return;
+  }
 
   printf("First number before swap: %f\n", first_number);
   printf("Second number before swap: %f\n", second_number);
