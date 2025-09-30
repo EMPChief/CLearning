@@ -302,15 +302,15 @@ void swap_two_floating_numbers(void) {
     return;
   }
 
-  printf("First number before swap: %f\n", first_number);
-  printf("Second number before swap: %f\n", second_number);
+  printf("First number before swap: %.2f\n", first_number);
+  printf("Second number before swap: %.2f\n", second_number);
 
   temporary_variable = first_number;
   first_number = second_number;
   second_number = temporary_variable;
 
-  printf("First number after swap: %f\n", first_number);
-  printf("Second number after swap: %f\n", second_number);
+  printf("First number after swap: %.2f\n", first_number);
+  printf("Second number after swap: %.2f\n", second_number);
 }
 
 /**
@@ -330,9 +330,16 @@ void math_operation_learn(void) {
   first_term = 1;
   term_position = 9;
   // Uncomment to enable interactive input
-  // printf("Enter the term position, first term, and c...");
-  // scanf("%lf", &term_positi, &first_term);
-  // scanf("%lf", &common_difference);
+  /*  if (!read_int("Enter the first term: ", &first_term)) {
+      return;
+    }
+    if (!read_double("Enter the common difference: ", &common_difference)) {
+
+     return;
+    }
+    if (!read_double("Enter the term position: ", &term_position)) {
+      return;
+    }*/
 
   nth_term = first_term + (term_position - 1) * common_difference;
 
