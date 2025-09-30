@@ -4,61 +4,116 @@
 
 #define PI 3.141592653589793
 
-static int read_int(const char *prompt, int *value) {
+/**
+ * Read an integer from user input with validation.
+ *
+ * Prints the prompt, reads an integer using scanf, and validates the input.
+ * If scanf fails to read exactly one integer, clears the input buffer and
+ * returns 0. Otherwise returns 1 for success.
+ *
+ * @param prompt The prompt string to display to the user
+ * @param value Pointer to store the validated integer value
+ * @return 1 on successful input, 0 on invalid input
+ */
+int read_int(const char *prompt, int *value) {
   int c;
   printf("%s", prompt);
   if (scanf("%d", value) != 1) {
-    while ((c = getchar()) != '\n' && c != EOF);
+    while ((c = getchar()) != '\n' && c != EOF)
+      ;
     printf("Invalid input. Please enter a valid integer.\n");
     return 0;
   }
-  while ((c = getchar()) != '\n' && c != EOF);
+  while ((c = getchar()) != '\n' && c != EOF)
+    ;
   return 1;
 }
 
-static int read_float(const char *prompt, float *value) {
+/**
+ * Read a float from user input with validation.
+ *
+ * Prints the prompt, reads a float using scanf, and validates the input.
+ * If scanf fails to read exactly one float, clears the input buffer and
+ * returns 0. Otherwise returns 1 for success.
+ *
+ * @param prompt The prompt string to display to the user
+ * @param value Pointer to store the validated float value
+ * @return 1 on successful input, 0 on invalid input
+ */
+int read_float(const char *prompt, float *value) {
   int c;
   printf("%s", prompt);
   if (scanf("%f", value) != 1) {
-    while ((c = getchar()) != '\n' && c != EOF);
+    while ((c = getchar()) != '\n' && c != EOF)
+      ;
     printf("Invalid input. Please enter a valid number.\n");
     return 0;
   }
-  while ((c = getchar()) != '\n' && c != EOF);
+  while ((c = getchar()) != '\n' && c != EOF)
+    ;
   return 1;
 }
 
-static int read_double(const char *prompt, double *value) {
+/**
+ * Read a double from user input with validation.
+ *
+ * Prints the prompt, reads a double using scanf, and validates the input.
+ * If scanf fails to read exactly one double, clears the input buffer and
+ * returns 0. Otherwise returns 1 for success.
+ *
+ * @param prompt The prompt string to display to the user
+ * @param value Pointer to store the validated double value
+ * @return 1 on successful input, 0 on invalid input
+ */
+int read_double(const char *prompt, double *value) {
   int c;
   printf("%s", prompt);
   if (scanf("%lf", value) != 1) {
-    while ((c = getchar()) != '\n' && c != EOF);
+    while ((c = getchar()) != '\n' && c != EOF)
+      ;
     printf("Invalid input. Please enter a valid number.\n");
     return 0;
   }
-  while ((c = getchar()) != '\n' && c != EOF);
+  while ((c = getchar()) != '\n' && c != EOF)
+    ;
   return 1;
 }
 
-static int read_three_ints(const char *prompt, int *val1, int *val2, int *val3) {
+/**
+ * Read three integers from user input with validation.
+ *
+ * Prints the prompt, reads three space-separated integers using scanf, and
+ * validates the input. If scanf fails to read exactly three integers, clears
+ * the input buffer and returns 0. Otherwise returns 1 for success.
+ *
+ * @param prompt The prompt string to display to the user
+ * @param val1 Pointer to store the first validated integer
+ * @param val2 Pointer to store the second validated integer
+ * @param val3 Pointer to store the third validated integer
+ * @return 1 on successful input, 0 on invalid input
+ */
+int read_three_ints(const char *prompt, int *val1, int *val2, int *val3) {
   int c;
   printf("%s", prompt);
   if (scanf("%d %d %d", val1, val2, val3) != 3) {
-    while ((c = getchar()) != '\n' && c != EOF);
-    printf("Invalid input. Please enter three valid integers separated by spaces.\n");
+    while ((c = getchar()) != '\n' && c != EOF)
+      ;
+    printf("Invalid input. Please enter three valid integers separated by "
+           "spaces.\n");
     return 0;
   }
-  while ((c = getchar()) != '\n' && c != EOF);
+  while ((c = getchar()) != '\n' && c != EOF)
+    ;
   return 1;
 }
 
+/**
+ * Calculate and print the average of two grades entered by the user.
+ *
+ * Prompts the user for two integer grades, validates input,
+ * and prints the average formatted to two decimal places.
+ */
 void calculate_two_grade_average(void) {
-  /**
-   * Read two grades from input, calculate their average, and print the result.
-   *
-   * Prompts the user for two integer grades, computes their average as a double
-   * to ensure precision, and displays the result formatted with two decimals.
-   */
   int grade_one;
   int grade_two;
   double grade_average;
@@ -74,13 +129,13 @@ void calculate_two_grade_average(void) {
   printf("The average grade is: %.2f\n", grade_average);
 }
 
+/**
+ * Calculate and print the birth year based on the user's current age.
+ *
+ * Prompts the user for the current year and their age, validates input,
+ * and computes the birth year as (current year - age).
+ */
 void calculate_birth_year(void) {
-  /**
-   * Compute birth year from current year and age.
-   *
-   * Prompts the user for the current year and their age, then calculates and
-   * prints the year they were born.
-   */
   int current_year;
   int current_age;
   int birth_year;
@@ -96,13 +151,13 @@ void calculate_birth_year(void) {
   printf("You were born in: %d\n", birth_year);
 }
 
+/**
+ * Calculate and print the area of a rectangle.
+ *
+ * Prompts the user for the length and height of a rectangle, validates input,
+ * and prints the area as an integer.
+ */
 void calculate_rectangle_area(void) {
-  /**
-   * Compute and print the area of a rectangle with integer dimensions.
-   *
-   * Reads the length and height as integers, multiplies them, and prints
-   * the resulting area.
-   */
   int rectangle_length;
   int rectangle_height;
   int rectangle_area;
@@ -118,14 +173,13 @@ void calculate_rectangle_area(void) {
   printf("The area of the rectangle is: %d\n", rectangle_area);
 }
 
+/**
+ * Calculate and print the areas of a rectangle and a circle.
+ *
+ * Prompts the user for rectangle length, rectangle width, and circle radius,
+ * validates input, and prints the calculated areas of both shapes.
+ */
 void calculate_rectangle_circle_area(void) {
-  /**
-   * Compute and print the areas of a rectangle and a circle.
-   *
-   * Prompts the user for rectangle length, width, and circle radius. Calculates
-   * the rectangle area as length × width, the circle area as π × r², and prints
-   * both results with two decimal places.
-   */
   float rectangle_length;
   float rectangle_width;
   float rectangle_area;
@@ -149,13 +203,13 @@ void calculate_rectangle_circle_area(void) {
   printf("Circle area: %.2f\n", circle_area);
 }
 
+/**
+ * Calculate and print the perimeter of a rectangle.
+ *
+ * Prompts the user for rectangle length and width, validates input,
+ * and prints the perimeter formatted to two decimal places.
+ */
 void calculate_rectangle_perimeter(void) {
-  /**
-   * Compute and print the perimeter of a rectangle.
-   *
-   * Reads rectangle length and width as doubles, computes perimeter using
-   * 2 × (length + width), and prints the result with two decimals.
-   */
   double rectangle_length;
   double rectangle_width;
   double rectangle_perimeter;
@@ -171,19 +225,20 @@ void calculate_rectangle_perimeter(void) {
   printf("Rectangle perimeter: %.2lf\n", rectangle_perimeter);
 }
 
+/**
+ * Calculate and print the average of three grades entered by the user.
+ *
+ * Prompts the user for three integer grades separated by spaces,
+ * validates input, and prints the average formatted to two decimal places.
+ */
 void calculate_three_grade_average(void) {
-  /**
-   * Compute and print the average of three grades.
-   *
-   * Reads three integer grades from input, calculates their average as a double
-   * to ensure floating-point precision, and displays the result.
-   */
   int grade_one;
   int grade_two;
   int grade_three;
   double grade_average;
 
-  if (!read_three_ints("Input three grades separated by spaces: ", &grade_one, &grade_two, &grade_three)) {
+  if (!read_three_ints("Input three grades separated by spaces: ", &grade_one,
+                       &grade_two, &grade_three)) {
     return;
   }
 
@@ -191,22 +246,21 @@ void calculate_three_grade_average(void) {
   printf("The average grade is: %.2f\n", grade_average);
 }
 
+/**
+ * Convert temperatures between Celsius and Fahrenheit.
+ *
+ * Prompts the user to choose between converting Celsius → Fahrenheit or
+ * Fahrenheit → Celsius, validates input, and prints the converted value.
+ */
 void temperature_converter(void) {
-  /**
-   * Convert between Celsius and Fahrenheit temperatures.
-   *
-   * Prompts the user to choose conversion direction:
-   *   1 → Celsius to Fahrenheit
-   *   2 → Fahrenheit to Celsius
-   * Based on the choice, asks for the temperature value, performs the
-   * conversion, and prints the result with two decimal places.
-   */
   double celsius_temperature;
   double fahrenheit_temperature;
   double user_choice;
   double conversion_result;
 
-  if (!read_double("Enter 1 to convert Celsius to Fahrenheit or 2 to convert Fahrenheit to Celsius: ", &user_choice)) {
+  if (!read_double("Enter 1 to convert Celsius to Fahrenheit or 2 to convert "
+                   "Fahrenheit to Celsius: ",
+                   &user_choice)) {
     return;
   }
 
@@ -218,7 +272,8 @@ void temperature_converter(void) {
     printf("%.2lf Celsius is %.2lf Fahrenheit\n", celsius_temperature,
            conversion_result);
   } else if (user_choice == 2) {
-    if (!read_double("Enter temperature in Fahrenheit: ", &fahrenheit_temperature)) {
+    if (!read_double("Enter temperature in Fahrenheit: ",
+                     &fahrenheit_temperature)) {
       return;
     }
     conversion_result = (fahrenheit_temperature - 32.0) * 5.0 / 9.0;
@@ -229,13 +284,13 @@ void temperature_converter(void) {
   }
 }
 
+/**
+ * Swap and print two floating-point numbers.
+ *
+ * Prompts the user for two floating-point numbers, validates input,
+ * swaps their values, and prints the numbers before and after swapping.
+ */
 void swap_two_floating_numbers(void) {
-  /**
-   * Read two floating-point numbers, swap them, and print before/after values.
-   *
-   * Prompts the user to enter two floats, exchanges their values using a
-   * temporary variable, and displays the values before and after the swap.
-   */
   float first_number;
   float second_number;
   float temporary_variable;
@@ -258,47 +313,26 @@ void swap_two_floating_numbers(void) {
   printf("Second number after swap: %f\n", second_number);
 }
 
+/**
+ * Demonstrate arithmetic sequence calculations.
+ *
+ * Calculates the n-th term of an arithmetic sequence given a first term,
+ * common difference, and term position (currently hardcoded).
+ * Prints the sequence details and step-by-step formula derivation.
+ */
 void math_operation_learn(void) {
-  /**
-   * Demonstrates how to compute the nth term of an arithmetic sequence.
-   *
-   * An arithmetic sequence is a sequence of numbers where each term
-   * after the first is obtained by adding a fixed value (the common
-   * difference) to the previous term.
-   *
-   * Formula:
-   *     nth_term = first_term + (term_position - 1) * common_difference
-   *
-   * Where:
-   *     - first_term: the first number in the sequence (a₁)
-   *     - common_difference: the fixed difference added each step (d)
-   *     - term_position: the position of the term you want to calculate (n)
-   *     - nth_term: the resulting value at position n
-   *
-   * Example:
-   *     If first_term = 1, common_difference = 2, and term_position = 9,
-   *     the 9th term is:
-   *         nth_term = 1 + (9 - 1) * 2 = 17
-   *
-   * Notes:
-   * - This function comes with default values so it can run without input.
-   * - Uncomment the scanf lines to allow interactive input from the user.
-   */
-
   double common_difference;
   int first_term;
   double term_position;
   double nth_term;
 
-  // Default example values
   common_difference = 2;
   first_term = 1;
   term_position = 9;
-
   // Uncomment to enable interactive input
-  // printf("Enter the term position, first term, and common difference
-  // separated by spaces: "); scanf("%lf", &term_position); scanf("%d",
-  // &first_term); scanf("%lf", &common_difference);
+  // printf("Enter the term position, first term, and c...");
+  // scanf("%lf", &term_positi, &first_term);
+  // scanf("%lf", &common_difference);
 
   nth_term = first_term + (term_position - 1) * common_difference;
 
