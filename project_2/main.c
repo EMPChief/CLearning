@@ -10,7 +10,10 @@ int main(void) {
     printf("1 - How this work (boilerplate)\n");
     printf("========================\n");
     printf("Enter your choice (1): ");
-    scanf("%d", &user_choice);
+
+    if (!read_int("Enter your choice (1-8): ", &user_choice)) {
+      continue;
+    }
 
     switch (user_choice) {
     case 1:

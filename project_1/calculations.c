@@ -330,15 +330,16 @@ void math_operation_learn(void) {
   first_term = 1;
   term_position = 9;
   // Uncomment to enable interactive input
-  /*  if (!read_int("Enter the first term: ", &first_term)) {
+  /*  if (!read_int("Enter the initial term: ", &first_term)) {
       return;
     }
-    if (!read_double("Enter the common difference: ", &common_difference)) {
+    if (!read_double("Enter the difference in the Arithemetic sequence: ",
+    &common_difference)) {
 
      return;
     }
-    if (!read_double("Enter the term position: ", &term_position)) {
-      return;
+    if (!read_double("Enter the number of elements in the Arithmetic sequence:
+    ", &term_position)) { return;
     }*/
 
   nth_term = first_term + (term_position - 1) * common_difference;
