@@ -1,5 +1,6 @@
 #include "helper.h"
 #include <stdio.h>
+#include <sys/types.h>
 
 /**
  * Read an integer from user input with validation.
@@ -103,11 +104,33 @@ int read_three_ints(const char *prompt, int *val1, int *val2, int *val3) {
     ;
   return 1;
 }
-void how_this_work(void) {
-  printf("This program demonstrates modular programming in C.\n");
-  printf("It consists of multiple files, each handling specific tasks.\n");
-  printf("The main file coordinates the execution flow.\n");
-  printf("Header files declare functions and macros for reuse.\n");
-  printf("Source files implement the declared functions.\n");
-  printf("This structure enhances code organization and maintainability.\n");
+
+/**
+ * Calculate and print the sum of an arithmetic sequence.
+ *
+ * Uses the arithmetic series formula:
+ *   S = (a1 + an) * n / 2
+ * where:
+ *   - a1 is the first term,
+ *   - an is the last term,
+ *   - n is the number of terms.
+ *
+ * Currently uses hardcoded values:
+ *   n = 9, a1 = 1, an = 17
+ *
+ * Prints the sum formatted to 2 decimal places.
+ *
+ * @note Input reading via read_three_ints is commented out,
+ *       but can be enabled for user input.
+ */
+void sum_of_arithemetic_sequence(void) {
+  double sum_of_sequence;
+  int n = 9;
+  int a1 = 1;
+  // int d = 2;
+  int an = 17;
+  // while (!read_three_ints("Enter n, a1, d: ", &n, &a1, &d))
+  //   ;
+  sum_of_sequence = ((double)a1 + an) * n / 2;
+  printf("Sum of the arithmetic sequence: %.2lf\n", sum_of_sequence);
 }
