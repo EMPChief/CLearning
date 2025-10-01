@@ -7,7 +7,8 @@ int main(void) {
 
   do {
     printf("=== Calculation Menu ===\n");
-    printf("1 - Sum sum_of_arithemetic_sequence\n");
+    printf("1 - Calculate sum of arithmetic sequence\n");
+    printf("2 - Salary calculator\n");
     printf("========================\n");
     printf("Enter your choice (1): ");
 
@@ -20,8 +21,13 @@ int main(void) {
       sum_of_arithemetic_sequence();
       valid_choice = 1;
       break;
+    case 2:
+      salary_calculator();
+      valid_choice = 1;
+      break;
     default:
       printf("Invalid choice! Please choose 1-9.\n");
+      printf("1 - Calculate sum of arithmetic sequence\n");
     }
   } while (!valid_choice);
 

@@ -127,10 +127,49 @@ void sum_of_arithemetic_sequence(void) {
   double sum_of_sequence;
   int n = 9;
   int a1 = 1;
-  // int d = 2;
   int an = 17;
-  // while (!read_three_ints("Enter n, a1, d: ", &n, &a1, &d))
+  // while (!read_int("Enter the number of terms (n): ", &n))
+  //   ;
+  // while (!read_int("Enter the first term (a1): ", &a1))
+  //   ;
+  // while (!read_int("Enter the last term (an): ", &an))
   //   ;
   sum_of_sequence = ((double)a1 + an) * n / 2;
   printf("Sum of the arithmetic sequence: %.2lf\n", sum_of_sequence);
+}
+
+/**
+ * Calculate and print gross salary, tax amount, and net salary.
+ *
+ * Prompts the user to input:
+ *   - Hourly wage (double)
+ *   - Hours worked (double)
+ *   - Tax rate in percentage (integer 0–100)
+ *
+ * Computes:
+ *   gross_salary = hourly_wage * hours_worked
+ *   tax_amount   = gross_salary * (tax_rate / 100.0)
+ *   net_salary   = gross_salary - tax_amount
+ *
+ * Prints the gross salary, tax amount, and net salary formatted
+ * to two decimal places.
+ *
+ * @note Input is validated using read_double and read_int.
+ *       The loop ensures valid entries before proceeding.
+ */
+void salary_calculator(void) {
+  double hourly_wage, hours_worked, gross_salary, net_salary, tax_amount;
+  int tax_rate;
+  while (!read_double("Enter hourly wage: ", &hourly_wage))
+    ;
+  while (!read_double("Enter hours worked: ", &hours_worked))
+    ;
+  while (!read_int("Enter tax rate (0-100): ", &tax_rate))
+    ;
+  gross_salary = hourly_wage * hours_worked;
+  tax_amount = gross_salary * tax_rate / 100.0;
+  net_salary = gross_salary - tax_amount;
+  printf("Gross Salary: $%.2lf\n", gross_salary);
+  printf("Tax Amount: $%.2lf\n", tax_amount);
+  printf("Net Salary: $%.2lf\n", net_salary);
 }
