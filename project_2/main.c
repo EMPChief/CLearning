@@ -7,7 +7,7 @@ int main(void) {
 
   do {
     printf("=== Calculation Menu ===\n");
-    printf("1 - How this work (boilerplate)\n");
+    printf("1 - Sum sum_of_arithemetic_sequence\n");
     printf("========================\n");
     printf("Enter your choice (1): ");
 
@@ -17,7 +17,7 @@ int main(void) {
 
     switch (user_choice) {
     case 1:
-      how_this_work();
+      sum_of_arithemetic_sequence();
       valid_choice = 1;
       break;
     default:
