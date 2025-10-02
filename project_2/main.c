@@ -9,6 +9,7 @@ int main(void) {
     printf("=== Calculation Menu ===\n");
     printf("1 - Calculate sum of arithmetic sequence\n");
     printf("2 - Salary calculator\n");
+    printf("3 - Driving time calculator\n");
     printf("========================\n");
     printf("Enter your choice (1): ");
 
@@ -23,6 +24,10 @@ int main(void) {
       break;
     case 2:
       salary_calculator();
+      valid_choice = 1;
+      break;
+    case 3:
+      driving_time_calculator();
       valid_choice = 1;
       break;
     default:
