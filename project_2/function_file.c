@@ -85,15 +85,16 @@ int read_double(const char *prompt, double *value) {
  * the input buffer and returns 0. Otherwise returns 1 for success.
  *
  * @param prompt The prompt string to display to the user
- * @param val1 Pointer to store the first validated integer
- * @param val2 Pointer to store the second validated integer
- * @param val3 Pointer to store the third validated integer
+ * @param first_value Pointer to store the first validated integer
+ * @param second_value Pointer to store the second validated integer
+ * @param third_value Pointer to store the third validated integer
  * @return 1 on successful input, 0 on invalid input
  */
-int read_three_ints(const char *prompt, int *val1, int *val2, int *val3) {
+int read_three_ints(const char *prompt, int *first_value, int *second_value,
+                    int *third_value) {
   int c;
   printf("%s", prompt);
-  if (scanf("%d %d %d", val1, val2, val3) != 3) {
+  if (scanf("%d %d %d", first_value, second_value, third_value) != 3) {
     while ((c = getchar()) != '\n' && c != EOF)
       ;
     printf("Invalid input. Please enter three valid integers separated by "
@@ -108,66 +109,49 @@ int read_three_ints(const char *prompt, int *val1, int *val2, int *val3) {
 /**
  * Calculate and print the sum of an arithmetic sequence.
  *
- * Uses the arithmetic series formula:
- *   S = (a1 + an) * n / 2
- * where:
- *   - a1 is the first term,
- *   - an is the last term,
- *   - n is the number of terms.
+ * Computes the sum of an arithmetic sequence using the formula:
+ *   sum = (first_term + last_term) * number_of_terms / 2
  *
- * Currently uses hardcoded values:
- *   n = 9, a1 = 1, an = 17
+ * The function uses the following fixed values:
+ *   - number_of_terms = 9
+ *   - first_term = 1
+ *   - last_term = 17
  *
- * Prints the sum formatted to 2 decimal places.
- *
- * @note Input reading via read_three_ints is commented out,
- *       but can be enabled for user input.
+ * Prints the calculated sum with two decimal places.
  */
-void sum_of_arithemetic_sequence(void) {
-  double sum_of_sequence;
-  int n = 9;
-  int a1 = 1;
-  int an = 17;
-  // while (!read_int("Enter the number of terms (n): ", &n))
-  //   ;
-  // while (!read_int("Enter the first term (a1): ", &a1))
-  //   ;
-  // while (!read_int("Enter the last term (an): ", &an))
-  //   ;
-  sum_of_sequence = ((double)a1 + an) * n / 2;
-  printf("Sum of the arithmetic sequence: %.2lf\n", sum_of_sequence);
+void sum_of_arithmetic_sequence(void) {
+  double sequence_sum;
+  int number_of_terms = 9;
+  int first_term = 1;
+  int last_term = 17;
+  sequence_sum = ((double)first_term + last_term) * number_of_terms / 2;
+  printf("Sum of the arithmetic sequence: %.2lf\n", sequence_sum);
 }
 
 /**
- * Calculate and print gross salary, tax amount, and net salary.
+ * Calculate and print net salary based on hourly wage, hours worked, and tax
+ * rate.
  *
- * Prompts the user to input:
- *   - Hourly wage (double)
- *   - Hours worked (double)
- *   - Tax rate in percentage (integer 0–100)
+ * Prompts the user for hourly wage, hours worked, and tax rate percentage.
+ * Computes the gross salary, tax amount, and net salary, then prints the
+ * results.
  *
- * Computes:
+ * Formulas used:
  *   gross_salary = hourly_wage * hours_worked
- *   tax_amount   = gross_salary * (tax_rate / 100.0)
- *   net_salary   = gross_salary - tax_amount
- *
- * Prints the gross salary, tax amount, and net salary formatted
- * to two decimal places.
- *
- * @note Input is validated using read_double and read_int.
- *       The loop ensures valid entries before proceeding.
+ *   tax_amount = gross_salary * tax_rate_percentage / 100
+ *   net_salary = gross_salary - tax_amount
  */
 void salary_calculator(void) {
   double hourly_wage, hours_worked, gross_salary, net_salary, tax_amount;
-  int tax_rate;
+  int tax_rate_percentage;
   while (!read_double("Enter hourly wage: ", &hourly_wage))
     ;
   while (!read_double("Enter hours worked this month: ", &hours_worked))
     ;
-  while (!read_int("Enter tax rate (0-100): ", &tax_rate))
+  while (!read_int("Enter tax rate (0-100): ", &tax_rate_percentage))
     ;
   gross_salary = hourly_wage * hours_worked;
-  tax_amount = gross_salary * tax_rate / 100.0;
+  tax_amount = gross_salary * tax_rate_percentage / 100.0;
   net_salary = gross_salary - tax_amount;
   printf("Gross Salary: $%.2lf\n", gross_salary);
   printf("Tax Amount: $%.2lf\n", tax_amount);
@@ -175,45 +159,40 @@ void salary_calculator(void) {
 }
 
 /**
- * Calculate and print the estimated driving time based on distance and speed.
+ * Calculate and print estimated driving time based on distance and speed.
  *
- * Prompts the user to input:
- *   - Driving distance in kilometers (integer)
- *   - Driving speed in kilometers per hour (integer)
+ * Prompts the user for driving distance (in km) and speed (in km/h).
+ * Computes travel time in hours, minutes, seconds, and milliseconds.
+ * Prints the formatted travel time.
  *
- * Computes:
- *   travel_time (in hours) = (double)driving_distance / driving_speed
- *   hours   = integer part of travel_time
- *   minutes = integer part of (fractional hours * 60)
- *   seconds = integer part of (remaining fractional minutes * 60)
- *   milliseconds = integer part of (remaining fractional seconds * 1000)
- *
- * Prints the estimated travel time in hours, minutes, and seconds, and
- * milliseconds.
- *
- * @note Input is validated using read_int to ensure integer values.
- *       Floating-point arithmetic is used to preserve fractional accuracy.
+ * Formulas used:
+ *   travel_time_hours = distance_km / speed_kmh
+ *   hours   = integer part of travel_time_hours
+ *   minutes = integer part of ((travel_time_hours - hours) * 60)
+ *   seconds = integer part of (((travel_time_hours - hours) * 60 - minutes) *
+ * 60) milliseconds = ((((travel_time_hours - hours) * 60 - minutes) * 60 -
+ * seconds) * 1000)
  */
-
 void driving_time_calculator(void) {
-  int driving_distance, driving_speed;
-  double travel_time;
-  int hours, minutes, seconds, miliseconds;
+  int distance_km, speed_kmh;
+  double travel_time_hours;
+  int hours, minutes, seconds, milliseconds;
 
-  while (!read_int("Enter the driving distance (in km): ", &driving_distance))
+  while (!read_int("Enter the driving distance (in km): ", &distance_km))
     ;
-  while (!read_int("Enter the driving speed (in km/h): ", &driving_speed))
+  while (!read_int("Enter the driving speed (in km/h): ", &speed_kmh))
     ;
 
-  travel_time = (double)driving_distance / driving_speed;
-  hours = (int)travel_time;
-  minutes = (int)((travel_time - hours) * 60);
-  seconds = (int)((((travel_time - hours) * 60) - minutes) * 60);
-  miliseconds =
-      (int)((((((travel_time - hours) * 60) - minutes) * 60) - seconds) * 1000);
+  travel_time_hours = (double)distance_km / speed_kmh;
+  hours = (int)travel_time_hours;
+  minutes = (int)((travel_time_hours - hours) * 60);
+  seconds = (int)((((travel_time_hours - hours) * 60) - minutes) * 60);
+  milliseconds =
+      (int)((((((travel_time_hours - hours) * 60) - minutes) * 60) - seconds) *
+            1000);
   printf("Estimated travel time: %d %s, %d %s, %d %s, %d %s\n", hours,
          (hours == 1 ? "hour" : "hours"), minutes,
          (minutes == 1 ? "minute" : "minutes"), seconds,
-         (seconds == 1 ? "second" : "seconds"), miliseconds,
-         (miliseconds == 1 ? "millisecond" : "milliseconds"));
+         (seconds == 1 ? "second" : "seconds"), milliseconds,
+         (milliseconds == 1 ? "millisecond" : "milliseconds"));
 }

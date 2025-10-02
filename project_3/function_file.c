@@ -49,7 +49,7 @@ int read_three_ints(const char *prompt, int *val1, int *val2, int *val3) {
   return 1;
 }
 
-void how_this_work(void) {
+void explain_modular_programming(void) {
   printf("This program demonstrates modular programming in C.\n");
   printf("It consists of multiple files, each handling specific tasks.\n");
   printf("The main file coordinates the execution flow.\n");
