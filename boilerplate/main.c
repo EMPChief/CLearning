@@ -1,8 +1,3 @@
-/*
- * Boilerplate: Modular programming demonstration with input validation
- * and clean code structure following C11 standards.
- */
-
 #include "helper.h"
 #include <stdio.h>
 
