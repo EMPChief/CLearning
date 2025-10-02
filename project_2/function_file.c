@@ -196,3 +196,30 @@ void driving_time_calculator(void) {
          (seconds == 1 ? "second" : "seconds"), milliseconds,
          (milliseconds == 1 ? "millisecond" : "milliseconds"));
 }
+
+/**
+ * Convert and print total seconds into hours, minutes, and seconds.
+ *
+ * Prompts the user for a total number of seconds, then calculates the
+ * equivalent hours, minutes, and remaining seconds. Prints the result
+ * in a human-readable format.
+ *
+ * Formulas used:
+ *   hours   = total_seconds / 3600
+ *   minutes = (total_seconds % 3600) / 60
+ *   seconds = total_seconds % 60
+ */
+void seconds_to_hms(void) {
+  int total_seconds;
+  int hours, minutes, seconds;
+
+  while (!read_int("Enter total seconds you want to convert: ", &total_seconds))
+    ;
+
+  hours = total_seconds / 3600;
+  minutes = (total_seconds % 3600) / 60;
+  seconds = total_seconds % 60;
+
+  printf("%d seconds is equivalent to %d hours, %d minutes, and %d seconds.\n",
+         total_seconds, hours, minutes, seconds);
+}
