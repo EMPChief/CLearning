@@ -11,15 +11,15 @@ int main(void) {
     printf("2 - Salary calculator\n");
     printf("3 - Driving time calculator\n");
     printf("========================\n");
-    printf("Enter your choice (1): ");
+    printf("Enter your choice (1-3): ");
 
-    if (!read_int("Enter your choice (1-8): ", &user_choice)) {
+    if (!read_int("Enter your choice (1-3): ", &user_choice)) {
       continue;
     }
 
     switch (user_choice) {
     case 1:
-      sum_of_arithemetic_sequence();
+      sum_of_arithmetic_sequence();
       valid_choice = 1;
       break;
     case 2:
@@ -31,8 +31,7 @@ int main(void) {
       valid_choice = 1;
       break;
     default:
-      printf("Invalid choice! Please choose 1-9.\n");
-      printf("1 - Calculate sum of arithmetic sequence\n");
+      printf("Invalid choice! Please choose 1-3.\n");
     }
   } while (!valid_choice);
 
