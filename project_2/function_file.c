@@ -162,7 +162,7 @@ void salary_calculator(void) {
   int tax_rate;
   while (!read_double("Enter hourly wage: ", &hourly_wage))
     ;
-  while (!read_double("Enter hours worked: ", &hours_worked))
+  while (!read_double("Enter hours worked this month: ", &hours_worked))
     ;
   while (!read_int("Enter tax rate (0-100): ", &tax_rate))
     ;
@@ -172,4 +172,48 @@ void salary_calculator(void) {
   printf("Gross Salary: $%.2lf\n", gross_salary);
   printf("Tax Amount: $%.2lf\n", tax_amount);
   printf("Net Salary: $%.2lf\n", net_salary);
+}
+
+/**
+ * Calculate and print the estimated driving time based on distance and speed.
+ *
+ * Prompts the user to input:
+ *   - Driving distance in kilometers (integer)
+ *   - Driving speed in kilometers per hour (integer)
+ *
+ * Computes:
+ *   travel_time (in hours) = (double)driving_distance / driving_speed
+ *   hours   = integer part of travel_time
+ *   minutes = integer part of (fractional hours * 60)
+ *   seconds = integer part of (remaining fractional minutes * 60)
+ *   milliseconds = integer part of (remaining fractional seconds * 1000)
+ *
+ * Prints the estimated travel time in hours, minutes, and seconds, and
+ * milliseconds.
+ *
+ * @note Input is validated using read_int to ensure integer values.
+ *       Floating-point arithmetic is used to preserve fractional accuracy.
+ */
+
+void driving_time_calculator(void) {
+  int driving_distance, driving_speed;
+  double travel_time;
+  int hours, minutes, seconds, miliseconds;
+
+  while (!read_int("Enter the driving distance (in km): ", &driving_distance))
+    ;
+  while (!read_int("Enter the driving speed (in km/h): ", &driving_speed))
+    ;
+
+  travel_time = (double)driving_distance / driving_speed;
+  hours = (int)travel_time;
+  minutes = (int)((travel_time - hours) * 60);
+  seconds = (int)((((travel_time - hours) * 60) - minutes) * 60);
+  miliseconds =
+      (int)((((((travel_time - hours) * 60) - minutes) * 60) - seconds) * 1000);
+  printf("Estimated travel time: %d %s, %d %s, %d %s, %d %s\n", hours,
+         (hours == 1 ? "hour" : "hours"), minutes,
+         (minutes == 1 ? "minute" : "minutes"), seconds,
+         (seconds == 1 ? "second" : "seconds"), miliseconds,
+         (miliseconds == 1 ? "millisecond" : "milliseconds"));
 }
