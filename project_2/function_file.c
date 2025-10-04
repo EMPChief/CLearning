@@ -213,8 +213,13 @@ void seconds_to_hms(void) {
   int total_seconds;
   int hours, minutes, seconds;
 
-  while (!read_int("Enter total seconds you want to convert: ", &total_seconds))
-    ;
+  while (
+      !read_int("Enter total seconds you want to convert: ", &total_seconds) ||
+      total_seconds < 0) {
+    if (total_seconds < 0) {
+      printf("Please enter a non-negative value.\n");
+    }
+  }
 
   hours = total_seconds / 3600;
   minutes = (total_seconds % 3600) / 60;
