@@ -1,3 +1,11 @@
+/**
+ * @file main.c
+ * @brief Interactive calculation menu for various utility functions
+ *
+ * Provides a menu-driven interface for arithmetic sequences, salary
+ * calculations, driving time estimates, and time conversions.
+ */
+
 #include "helper.h"
 #include <stdio.h>
 

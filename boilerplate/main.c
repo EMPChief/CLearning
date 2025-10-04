@@ -1,3 +1,11 @@
+/**
+ * @file main.c
+ * @brief Template main file for quick project setup
+ *
+ * This is a boilerplate template for creating new C projects quickly.
+ * Modify the menu options and function calls to suit your project needs.
+ */
+
 #include "helper.h"
 #include <stdio.h>
 
