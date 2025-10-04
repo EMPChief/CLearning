@@ -65,14 +65,34 @@ CLearning uses an agent-based workflow where a main delegator coordinates specia
 **Responsibilities:**
 - Run tests and report results
 - Perform code reviews
-- Execute git operations
 - Verify builds
 - Polish documentation
 
 **Examples:**
 - "Run tests and analyze results"
 - "Perform code review"
-- "Commit changes with message"
+- "Verify build compiles without warnings"
+
+#### @subagents/giter (Git Agent)
+
+**Purpose:** Version control operations specialist
+
+**Responsibilities:**
+- Stage relevant changes
+- Create meaningful commit messages
+- Commit changes
+- **Push to remote repository** (default behavior)
+- Verify push success
+- Report results to user
+
+**Examples:**
+- "Stage and commit the calculator feature"
+- "Commit test additions and push to remote"
+- "Create commit for bug fix and sync with remote"
+
+**Push behavior:**
+- ✅ **Default:** Always push after committing
+- ❌ **Skip only when:** User explicitly says "don't push" or "commit locally only"
 
 ## Delegation Decision Matrix
 
@@ -84,7 +104,7 @@ CLearning uses an agent-based workflow where a main delegator coordinates specia
 | Makefile updates | @subagents/coder-agent | "Add test targets to Makefile" |
 | Test execution | general agent | "Run make test and report results" |
 | Code review | general agent | "Review code for quality issues" |
-| Git operations | general agent | "Commit changes" |
+| Git operations | @subagents/giter | "Stage, commit, and push changes" |
 | Planning | main delegator | "Create implementation plan" |
 | Coordination | main delegator | "Monitor task progress" |
 
@@ -128,11 +148,18 @@ Phase 3: Verification (General Agent)
 2. Delegate to general agent:
    "Perform code review for quality issues"
 
-Phase 4: Completion
+Phase 4: Version Control (@subagents/giter)
 ────────────────────────────────────
-1. Review all work
-2. User approval
-3. (If requested) Delegate commit to general agent
+1. Delegate to @subagents/giter:
+   "Stage changes, commit with message 'feat: add temperature 
+   converter with tests', and push to remote"
+
+2. Git agent will:
+   - Stage relevant files
+   - Create meaningful commit
+   - Push to remote (default)
+   - Verify push success
+   - Report results
 ```
 
 ### ❌ INCORRECT Workflow
@@ -211,6 +238,7 @@ Delegate to @subagents/coder-agent:
 - Tests → @subagents/coder-agent
 - Review → general agent
 - Execute → general agent
+- Git operations → @subagents/giter
 
 ## Communication Patterns
 
@@ -260,6 +288,25 @@ Command: make test
 Expected: All tests pass
 
 Report: Test results and any failures
+```
+
+### Delegating to Git Agent
+
+**Template:**
+```
+@subagents/giter: [Git operation]
+
+Action: Stage, commit, and push changes
+
+Files to include:
+- [file 1]
+- [file 2]
+
+Commit message: [type]: [subject]
+
+Push: Yes (default) / No (only if user requested)
+
+Expected: Changes committed and pushed to remote successfully
 ```
 
 ## Escalation Handling

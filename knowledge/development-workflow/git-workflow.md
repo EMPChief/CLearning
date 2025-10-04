@@ -157,6 +157,9 @@ git add .
 # Commit with message
 git commit -m "feat: add calculator function"
 
+# Push to remote (standard practice)
+git push origin main
+
 # View commit history
 git log
 git log --oneline
@@ -226,8 +229,11 @@ git add function_file.c helper.h tests/test_feature.c Makefile
 # 5. Commit
 git commit -m "feat: add feature X with tests"
 
-# 6. Push (if working with remote)
+# 6. Push to remote
 git push origin main
+
+# 7. Verify push success
+git log origin/main -1  # Confirm latest commit is on remote
 ```
 
 ### Bug Fix
@@ -246,10 +252,14 @@ make test  # Should pass
 git add function_file.c
 git commit -m "fix: correct buffer overflow in read_int"
 
-# 5. Consider adding test
+# 5. Push to remote
+git push origin main
+
+# 6. Consider adding test
 vim tests/test_input.c  # Add regression test
 git add tests/test_input.c
 git commit -m "test: add regression test for buffer overflow"
+git push origin main
 ```
 
 ### Documentation Update
@@ -263,6 +273,9 @@ git add function_file.c
 
 # 3. Commit
 git commit -m "docs: add docstrings to input validation functions"
+
+# 4. Push to remote
+git push origin main
 ```
 
 ## Commit Hygiene
@@ -335,14 +348,39 @@ git clone https://github.com/user/CLearning.git
 cd CLearning
 ```
 
-### Pushing
+### Pushing (Standard Practice)
+
+**Default behavior: Always push after committing**
 
 ```bash
-# Push to remote
+# Standard push after commit
 git push origin main
 
-# Push new branch
+# Push new branch (first time)
 git push -u origin feature-name
+
+# Verify push succeeded
+git log origin/main -1
+```
+
+**When NOT to push:**
+- User explicitly says "don't push"
+- Working on experimental/incomplete feature
+- Coordinating with team (waiting for approval)
+
+**Handling push failures:**
+
+```bash
+# If push rejected (remote has changes)
+git pull --rebase origin main
+git push origin main
+
+# If conflicts occur
+git status  # Check conflicted files
+vim conflicted_file.c  # Resolve conflicts
+git add conflicted_file.c
+git rebase --continue
+git push origin main
 ```
 
 ### Pulling
@@ -363,6 +401,7 @@ git merge origin/main
 vim conflicted_file.c  # Resolve conflicts
 git add conflicted_file.c
 git commit -m "merge: resolve conflicts in feature X"
+git push origin main
 ```
 
 ## Branching Strategy (If Used)
@@ -561,18 +600,30 @@ git checkout -b recovery-branch
 1. Main Delegator: Plan work
 2. Specialized Agent: Implement
 3. General Agent: Test
-4. General Agent: Commit (if requested by user)
+4. Git Agent: Stage, commit, and push changes
 ```
 
-**Commit from General Agent:**
+**Standard git workflow from Git Agent:**
 ```bash
-# After user requests commit
+# Stage relevant files
 git add <relevant files>
+
+# Commit with meaningful message
 git commit -m "feat: add feature X
 
 Implementation by coder-agent, tested and verified.
 All tests pass."
+
+# Push to remote (default behavior)
+git push origin main
+
+# Verify push succeeded
+git log origin/main -1
 ```
+
+**Only skip push when user explicitly requests:**
+- "commit but don't push"
+- "commit locally only"
 
 ### With Testing
 
