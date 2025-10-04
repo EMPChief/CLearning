@@ -1,3 +1,11 @@
+/**
+ * @file helper.h
+ * @brief Function declarations for input validation and calculations
+ *
+ * Provides validated input functions and various calculation utilities
+ * for use in interactive programs.
+ */
+
 #ifndef HELPER_H
 #define HELPER_H
 

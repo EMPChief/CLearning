@@ -1,3 +1,12 @@
+/**
+ * @file function_file.c
+ * @brief Implementation of input validation and calculation utilities
+ *
+ * Contains validated input functions for integers, floats, and doubles,
+ * plus various calculation utilities including arithmetic sequences,
+ * salary calculations, driving time estimates, and time conversions.
+ */
+
 #include "helper.h"
 #include <stdio.h>
 #include <sys/types.h>
@@ -112,12 +121,8 @@ int read_three_ints(const char *prompt, int *first_value, int *second_value,
  * Computes the sum of an arithmetic sequence using the formula:
  *   sum = (first_term + last_term) * number_of_terms / 2
  *
- * The function uses the following fixed values:
- *   - number_of_terms = 9
- *   - first_term = 1
- *   - last_term = 17
- *
- * Prints the calculated sum with two decimal places.
+ * @note Uses hardcoded values: number_of_terms=9, first_term=1, last_term=17
+ * @note Prints result to stdout with two decimal places
  */
 void sum_of_arithmetic_sequence(void) {
   double sequence_sum;
@@ -140,6 +145,8 @@ void sum_of_arithmetic_sequence(void) {
  *   gross_salary = hourly_wage * hours_worked
  *   tax_amount = gross_salary * tax_rate_percentage / 100
  *   net_salary = gross_salary - tax_amount
+ *
+ * @note Prints results to stdout
  */
 void salary_calculator(void) {
   double hourly_wage, hours_worked, gross_salary, net_salary, tax_amount;
@@ -172,6 +179,8 @@ void salary_calculator(void) {
  *   seconds = integer part of (((travel_time_hours - hours) * 60 - minutes) *
  * 60) milliseconds = ((((travel_time_hours - hours) * 60 - minutes) * 60 -
  * seconds) * 1000)
+ *
+ * @note Prints result to stdout
  */
 void driving_time_calculator(void) {
   int distance_km, speed_kmh;
@@ -208,13 +217,21 @@ void driving_time_calculator(void) {
  *   hours   = total_seconds / 3600
  *   minutes = (total_seconds % 3600) / 60
  *   seconds = total_seconds % 60
+ *
+ * @note Validates that input is non-negative
+ * @note Prints result to stdout
  */
 void seconds_to_hms(void) {
   int total_seconds;
   int hours, minutes, seconds;
 
-  while (!read_int("Enter total seconds you want to convert: ", &total_seconds))
-    ;
+  while (
+      !read_int("Enter total seconds you want to convert: ", &total_seconds) ||
+      total_seconds < 0) {
+    if (total_seconds < 0) {
+      printf("Please enter a non-negative value.\n");
+    }
+  }
 
   hours = total_seconds / 3600;
   minutes = (total_seconds % 3600) / 60;

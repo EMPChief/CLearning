@@ -1,3 +1,12 @@
+/**
+ * @file function_file.c
+ * @brief Template implementation file for utility functions
+ *
+ * This is a boilerplate template containing common input validation functions.
+ * Add your own functions below the input validation utilities.
+ * The read_* functions provide validated user input handling.
+ */
+
 #include "helper.h"
 #include <stdio.h>
 
@@ -103,6 +112,14 @@ int read_three_ints(const char *prompt, int *val1, int *val2, int *val3) {
     ;
   return 1;
 }
+/**
+ * Print explanation of modular programming concepts.
+ *
+ * Displays a description of modular programming principles and structure
+ * in C, covering file organization and benefits.
+ *
+ * @note Prints explanation to stdout
+ */
 void explain_modular_programming(void) {
   printf("This program demonstrates modular programming in C.\n");
   printf("It consists of multiple files, each handling specific tasks.\n");
